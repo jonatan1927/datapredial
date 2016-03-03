@@ -1,0 +1,98 @@
+<?php tag::css('table/uno') ?>
+<?php echo Html::includeCss() ?>
+<?php
+$err = isset($_GET['error']) ? $_GET['error'] : null;
+?>
+<div class="row">
+    <div class="col-xl-12">
+                                <?php
+            if ($err == 1) {
+                echo "<div class='alert alert-danger text-center'><strong>Adventencia:"
+                . " </strong>la ficha no fue eliminada</div>";
+            }
+            if ($err == 2) {
+                echo "<div class='alert alert-success text-center'><strong>Adventencia: "
+                . "</strong>la ficha fue eliminada</div>";
+            }
+            ?>
+        <h4 style="margin-left: 20px;"><a href="<?php echo PUBLIC_PATH ?>sesion/pexcel">Descargar sabana predial</a></h4>
+        <div class="panel panel-default" style="width:2400px; height: auto; margin-right: 50px;">
+            <div class="panel-heading" style="text-align: center; width:2400px; height: auto;">
+                <h3>Sabana predial Bucaramanga-Giron-Piedecuesta</h3>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Ficha predial</th>
+                                <th>Cedula propietario</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Cedula catastral</th>
+                                <th>Municipio</th>
+                                <th>Departamento</th>
+                                <th>Matricula inmobiliaria</th>
+                                <th>Direccion</th>
+                                <th>Escritura</th>
+                                <th>Notaria</th>
+                                <th>Area de terreno</th>
+                                <th>Area requerida</th>
+                                <th>Area sobrate</th>
+                                <th>ficha predial</th>
+                                 <th>Actualizar</th>
+                                <?php if ($titu == "Administrador") { ?>
+                                    <th>Eliminar</th>      
+                                <?php } ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($inner as $s): ?>
+                                <tr class="odd gradeX">
+                                    <td><?php echo $s->f ?></td>
+                                    <td><?php echo $s->c ?></td>
+                                    <td><?php echo $s->no ?></td>
+                                    <td><?php echo $s->t ?></td>
+                                    <td><?php echo $s->p ?></td>
+                                    <td><?php echo $s->n ?></td>
+                                    <td><?php echo $s->d ?></td>
+                                    <td><?php echo $s->m ?></td>
+                                    <td><?php echo $s->dir ?></td>
+                                    <td><?php echo $s->e ?></td>
+                                    <td><?php echo $s->not ?></td>
+                                    <td><?php echo $s->ate ?></td>
+                                    <td><?php echo $s->ar ?></td>
+                                    <td><?php echo $s->aso ?></td>
+                                    <td><form action="reporteficha" method="post"><input value="<?php echo $s->f ?>" name="chafi" style="visibility: hidden;"><button type="submit" name="cha" class="btn btn-default" >
+                                                <span class="fa fa-external-link-square"></span> ficha
+                                            </button></form></td>
+                                    <td><form action="registro" method="post"><input value="<?php echo $s->f ?>" name="udelo" style="visibility: hidden;"><button type="submit" name="upd" class="btn btn-default" >
+                                                <span class="fa fa-pencil"></span> Update
+                                            </button></form></td>
+                                                 <?php if ($titu == "Administrador") { ?>
+                                            <td><form action="" method="post"><input value="<?php echo $s->f ?>" name="delo" style="visibility: hidden;"><button type="submit" name="del" class="btn btn-default" >
+                                                <span class="fa fa-trash-o"></span> Delete
+                                            </button></form></td>     
+                                    <?php } ?>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>                            
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<?php echo Tag::js('table/jquery-1.11.3.min') ?>
+<?php echo Tag::js('table/jquery.dataTables.min') ?> 
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>

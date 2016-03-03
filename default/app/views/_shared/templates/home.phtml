@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Index</title>
+
+    <!-- Bootstrap core CSS -->
+    <?php Tag::css('sbadmin/bootstrap') ?>
+
+    <!-- Add custom CSS here -->
+    <?php Tag::css('sbadmin/sb-admin') ?>
+    <?php Tag::css('sbadmin/font-awesome/css/font-awesome.min') ?>
+    <?php Tag::css('validacion/css/bootstrap.min') ?>
+
+    <?php echo Html::includeCss() ?>
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <?php echo Tag::js('sbadmin/bootstrap') ?> 
+  </head> 
+  <body>
+      <div id="wrapper">
+          <?php View::partial('sbadmin/sidebar') ?>
+          <div id="page-wrapper">
+             <?php View::partial('sbadmin/intro',FALSE,  array('titulo' =>$titulo, 'titu' =>$titu)) ?> 
+              <?php View::content() ?>
+          </div>
+      </div>    
+  </body>

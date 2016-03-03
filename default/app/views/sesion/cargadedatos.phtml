@@ -1,0 +1,64 @@
+<?php
+$err = isset($_GET['error']) ? $_GET['error'] : null;
+$sss = session::get('array_usuarios');
+  ?>
+<div style="text-align: center;background-color: buttonhighlight"><h3>Carga de archivos</h3></div>
+
+<br>
+<br>
+
+        <div class="col-lg-10">
+            <form  action="cargadedatos"  method="post">
+                                <div class="form-group" >
+                <label for="archivo" class="control-label col-xs-5">Copie el directorio del archivo:</label>
+                <div class="col-xs-5">
+                    <input id="archivo" name="archivo" type="text" 
+                           class="form-control" placeholder="Archivo" required="true">
+                    <span class="help-block"></span>
+                </div>
+            </div>
+                      <div style="margin-left: 630px;">
+                          <button type="submit" class="btn btn-primary">Cargar datos</button></div>
+         </form>
+            <br>
+<br>
+            <?php
+            if ($err == 1) {
+                echo "<div class='alert alert-danger text-center'><strong>Adventencia:"
+                . " </strong>No se pudo realizar la actualización</div>";
+            }
+            if ($err == 2) {  
+                echo "<div class='alert alert-danger text-center'><strong>Adventencia:"
+                . " </strong>Pailas</div>";}
+
+            if ($err == 3) {
+                echo "<div class='alert alert-success text-center'><strong>Adventencia:"
+                . " </strong>la siguiente tabla ya se encuentra registrada</div>";
+            }
+                    ?>
+<br>
+<table class="table table-bordered">
+    <thead><td>cedula</td><td>nombre</td><td>telefono</td><td>email</td></thead>
+   <?php for($i=0;$i<  count($sss);$i++){?>
+<tr>
+    <td><?php echo  $sss[$i]['cedula'] ?></td>
+    <td><?php echo $sss[$i]['nombre'] ?></td>
+    <td><?php echo $sss[$i]['telefono']?></td>
+    <td><?php echo $sss[$i]['email'] ?></td>
+</tr>                    
+          <?php       }  ?>
+
+</table>
+<div style="margin-left: 600px;">
+    <form action="cargadedatos"  method="post">
+    <input class="btn btn-primary" style="width: 200px;" 
+           type="submit" value="Subir a la base de datos" name="subir"/>
+    </form>
+</div>
+<br>            
+         <?php  
+                ?>
+            
+            </div>
+    <?php echo Tag::js('validacion/js/validacion') ?> 
+

@@ -1,0 +1,56 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+$ac = session::get('dani');
+Load::model('fichapredial');
+$fiha = new fichapredial();
+$maria = $fiha->consultados($ac);
+Load::model('persona');
+$p = new persona();
+foreach ($maria as $palo) {
+    foreach ($p->find("cedula='$palo->nom'") as $pp) {
+        $dd = $pp->nombre;
+    }
+    Load::lib('excel/PHPExcel/IOFactory');
+    $excel = PHPExcel_IOFactory::load('C:\xampp\htdocs\datapredial\default\public\docs/libro1.xlsx');
+    date_default_timezone_set('America/Mexico_City');
+    $excel->getActiveSheet()->setTitle('fichapredial');
+    $excel->setActiveSheetIndex(0)
+            ->setCellValue('U7', 'UF-7')
+            ->setCellValue('C20', $palo->nombre)
+            ->setCellValue('P29', $palo->actividad)
+            ->setCellValue('P26', $palo->usosuelo)
+            ->setCellValue('G29', $palo->departamento)
+            ->setCellValue('G28', $palo->municipio)
+            ->setCellValue('G26', $palo->barrio)
+            ->setCellValue('T10', $palo->ficha)
+            ->setCellValue('AA7', 'Giron-Piedecuesta')
+            ->setCellValue('V18', $palo->cedula)
+            ->setCellValue('V20', $palo->email)
+            ->setCellValue('V22', $palo->direccion)
+            ->setCellValue('AC19', $palo->catastral)
+            ->setCellValue('AC23', $palo->matricula)
+            ->setCellValue('G31', 'MEJORAMIENTO')
+            ->setCellValue('I70', date('d-m-Y'))
+            ->setCellValue('N64', 'Tiene el inmueble licencia urbanística,Urbanización, parcelación, subdivisión, construcción, Intervención, Espacio público ?')
+            ->setCellValue('N65', 'Tiene el inmueble reglamento de Propiedad Horozontal LEY 675 DE 2001 ?')
+            ->setCellValue('N66', 'Tiene el inmueble aprobado plan parcial en el momento del levantamiento de la ficha predial ?')
+            ->setCellValue('N67', 'Aplica Informe de analisis de Área Remanente:')
+            ->setCellValue('E73', $dd)
+
+    ;
+}
+//foreach ($ff as $d){
+//$excel->setActiveSheetIndex(0);
+//$excel->setActiveSheetIndex(0)->setCellValue('O34', "$d->ficha");
+//}
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="fichapredial.xlsx"');
+$witer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+$witer->save('php://output');
+exit;
+

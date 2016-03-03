@@ -1,0 +1,200 @@
+<?php echo Tag::js('validacion/js/jquery-1.11.1.min') ?>
+<?php echo Tag::js('validacion/js/bootstrap.min') ?>  
+<?php echo Tag::js('validacion/js/validacion') ?> 
+<?php
+$err = isset($_GET['error']) ? $_GET['error'] : null;
+?>
+<header> 
+    <div class="sticky-nav">  
+        <nav id="menu">
+            <ul id="mecha">
+                <li class="current" title="Inicio"><a href="">Inicio</a></li>
+                <li title="Acerca del proyecto"><a href="http://localhost:50/pmapper/map_default.phtml" target="_blank">visor geografico</a></li>
+                <li title="Acerca de los SIG"><a href="<?php echo PUBLIC_PATH ?>sesion">Acerca de los SIG</a></li>
+                <li title="Iniciar sesión"><a href="#" data-toggle="modal" data-target="#uno">Iniciar sesión</a>          
+                </li>
+            </ul>
+        </nav>    
+    </div>
+</header>
+<!-- End Header -->
+<!-- Our Work Section -->
+<div class="container"> 
+    <!-- Portfolio Projects -->
+    <div class="row">
+        <div class="span12">
+            <div class="title-page">
+                <?php
+                if ($err == 1) {
+                    echo "<div class='alert alert-danger text-center'><strong>Adventencia: </strong>Usuario o contraseña erroneos</div>";
+                }
+                if ($err == 2) {
+                    echo "<div class='alert alert-danger text-center'><strong>Adventencia: </strong>Debe primero iniciar sesión</div>";
+                }
+                ?>  
+                <br>
+                <h2 class="title">Geo Predial</h2>
+                <h3 class="title-description">destinado al proceso de <a href="http://ani.gov.co/sites/default/files/apendice_tecnico_7_0.pdf" title="APÉNDICE TÉCNICO 7: GESTIÓN PREDIAL" target="blank"> gestion predial</a>.</h3>
+            </div></div>
+        <div class="span3">
+            <!-- Filter -->
+            <nav id="options" class="work-nav">
+                <ul id="filters" class="option-set" data-option-key="filter">
+                    <li class="type-work">Insumos prediales</li>
+                    <li title="Entregables"><a href="#filter" data-option-value="*" class="selected">Entregables</a></li>
+                    <li title="Ficha predial"><a href="#filter" data-option-value=".ficha">Ficha predial</a></li>
+                    <li title="Sabana predial"><a href="#filter" data-option-value=".sabana">Sabana predial</a></li>
+                    <li title="Sabana predial"><a href="#filter" data-option-value=".tira">Tira predial</a></li>
+                    <li title="plano predial"><a href="#filter" data-option-value=".plano">Plano predial</a></li>
+                </ul>
+            </nav>
+            <!-- End Filter -->
+        </div>         
+        <div class="span9">
+            <div class="row">
+                <section id="projects">
+                    <ul id="thumbs">
+
+                        <!-- Item Project and Filter Name -->
+                        <li class="item-thumbs span3 ficha">
+                            <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                            <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Ficha Predial" href="_include/img/work/full/image-01-full.jpg">
+                                <span class="overlay-img"></span>
+                                <span class="overlay-img-thumb font-icon-plus"></span>
+                            </a>
+                            <!-- Thumb Image and Description -->
+                            <img src="_include/img/work/thumbs/image-01.jpg" alt="Es el documento en el que se registra la información técnica y jurídica del Predio, 
+                                 identificando plenamente, entre otros, el propietario, el área objeto de adquisición para el Proyecto y los linderos de la misma,
+                                 con todas sus construcciones, cultivos y especies vegetales.">
+                        </li>
+                        <!-- End Item Project -->
+
+
+                        <!-- Item Project and Filter Name -->
+                        <li class="item-thumbs span3 sabana">
+                            <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                            <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Sábana Predial" href="_include/img/work/full/image-02-full.jpg">
+                                <span class="overlay-img"></span>
+                                <span class="overlay-img-thumb font-icon-plus"></span>
+                            </a>
+                            <!-- Thumb Image and Description -->
+                            <img src="_include/img/work/thumbs/image-02.jpg" alt="Es una herramienta de control y seguimiento de la Gestión Predial,
+                                 que plasma toda la información relacionada con los insumos prediales y la adquisición de los Predios, detallando la 
+                                 información contenida en los documentos que permita analizar los cambios en los mismos, el avance del proceso.">
+                        </li>
+                        <!-- End Item Project -->
+
+
+                        <!-- Item Project and Filter Name -->
+                        <li class="item-thumbs span3 tira">
+                            <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                            <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Tira Topografica" href="_include/img/work/full/image-03-full.jpg">
+                                <span class="overlay-img"></span>
+                                <span class="overlay-img-thumb font-icon-plus"></span>
+                            </a>
+                            <!-- Thumb Image and Description -->
+                            <img src="_include/img/work/thumbs/image-03.jpg" alt="Corresponde a los planos en planta
+                                 en los que se identifican los linderos prediales, vías, corrientes de agua,
+                                 sitios de interés y otros detalles relacionados con los Predios y su entorno.">
+                        </li>
+                        <!-- End Item Project -->
+
+
+                        <!-- Item Project and Filter Name -->
+                        <li class="item-thumbs span3 plano">
+                            <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                            <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Plano Predial" href="_include/img/work/full/image-04-full.jpg">
+                                <span class="overlay-img"></span>
+                                <span class="overlay-img-thumb font-icon-plus"></span>
+                            </a>
+                            <!-- Thumb Image and Description -->
+                            <img src="_include/img/work/thumbs/image-04.jpg" alt="Es el documento gráfico, elaborado a partir de los planos de diseño
+                                 definitivo en el que se representa el área objeto de adquisición.">
+                        </li>
+                        <!-- End Item Project -->      
+                    </ul>
+                </section>  
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uno" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel" style="background:#F8F8FF; width: 500px; height: 500px" >
+        <div class="modal-dialog">
+            <div class="modal-content"> 
+                <div class="modal-header"> 
+                    <button type="button" class="close" 
+                            data-dismiss="modal" aria-hidden="true"> 
+                        &times;</button>
+                    <h2 style="text-align: center"> <font color="black">Ingrese como usuario</font></h2>                            
+                </div>
+                <div class="modal-body" >
+                    <div style="margin-left:125px">
+                        <h2> <font color="black">Geo Predial</font></h2> 
+                        <form role="form" class="form-signin" action="<?php echo PUBLIC_PATH ?>sesion" method="post">
+                            <div class="form-group">
+                                <label for="usuario" >Usuario:</label>
+                                <div class="col-xs-9">
+                                    <input style="height: 38px; background-color: #ffffff; color: black;" type="text" id="usuario"  name="usuario"  class="form-control" placeholder="Usuario" onkeyup="validacion('usuario');">                
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contra" >Contraseña:</label>  
+                                <div class="col-xs-9">
+                                    <input style="height: 38px; background-color: #ffffff; color: black;" type="password" id="contra" name="contra"  class="form-control" placeholder="Contraseña" onkeyup="validacion('contra');"><br>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>                           <button style="height: 38px;"  type="submit" class="btn btn-primary">Ingresar</button></form>
+                    </div>
+                </div></div></div></div> 
+    <!-- End Portfolio Projects -->
+</div>
+<!-- End Our Work Section -->
+<!-- Socialize -->
+<div id="social-area" class="page">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <nav id="social">
+                    <ul>
+                        <li><a href="https://twitter.com/Bluxart" title="Visitanos en twitter" target="_blank"><span class="font-icon-social-twitter"></span></a></li>
+                        <li><a href="https://www.facebook.com/Bluxart" title="Visitanos en Facebook" target="_blank"><span class="font-icon-social-facebook"></span></a></li>             
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Socialize -->
+
+<!-- Footer -->
+<footer>
+    <p class="credits"><a href="http://themes.alessioatzeni.com/html/brushed/" target="_blank" title="Brushed | Responsive One Page Template">Plantilla Brushed  </a>elaborada por <a href="http://www.alessioatzeni.com/" target="_blank" title="Alessio Atzeni | Web Designer &amp; Front-end Developer">Alessio Atzeni</a></p>
+</footer>
+<!-- End Footer -->
+
+<!-- Back To Top -->
+<a id="back-to-top" href="#">
+    <i class="font-icon-arrow-simple-up"></i>
+</a>
+<!-- End Back to Top -->
+
+
+<!-- Js -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery Core -->
+
+<?php echo Tag::js('bruset/bootstrap.min'); ?> <!-- Bootstrap -->
+<?php echo Tag::js('bruset/supersized.3.2.7.min'); ?> <!-- Slider -->
+<?php echo Tag::js('bruset/waypoints'); ?> <!-- WayPoints -->
+<?php echo Tag::js('bruset/waypoints-sticky'); ?> <!-- Waypoints for Header -->
+<?php echo Tag::js('bruset/jquery.isotope'); ?> <!-- Isotope Filter -->
+<?php echo Tag::js('bruset/jquery.fancybox.pack'); ?> <!-- Fancybox -->
+<?php echo Tag::js('bruset/jquery.fancybox-media'); ?> <!-- Fancybox for Media -->
+<?php echo Tag::js('bruset/jquery.tweet'); ?> <!-- Tweet -->
+<?php echo Tag::js('bruset/plugins'); ?> <!-- Contains: jPreloader, jQuery Easing, jQuery ScrollTo, jQuery One Page Navi -->
+<?php echo Tag::js('bruset/main'); ?> <!-- Default JS -->
+
+<!-- End Js -->
+
+

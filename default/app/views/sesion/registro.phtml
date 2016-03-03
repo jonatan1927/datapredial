@@ -1,0 +1,587 @@
+<?php
+$err = isset($_GET['error']) ? $_GET['error'] : null;
+$dyj = session::get('jyd');
+foreach ($dyj as $vl) {
+    ?>
+    <div class="container">
+        <h3 style="text-align: center;">Registro predial</h3>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Inf.ficha</a></li>
+            <li><a data-toggle="tab" href="#menu1">propietario</a></li>
+            <li><a data-toggle="tab" href="#menu2">Inf.predial</a></li>
+            <li><a data-toggle="tab" href="#menu3">áreas</a></li>
+            <li><a data-toggle="tab" href="#menu4">Inf.fisica</a></li>
+            <li><a data-toggle="tab" href="#menu5">Cultivos,especies</a></li>
+            <li><a data-toggle="tab" href="#menu6">Construcciones</a></li>
+            <li><a data-toggle="tab" href="#menu7">Mejoras</a></li>
+            <li><a data-toggle="tab" href="#menu8">Observaciones</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <?php
+                    if ($err == 1) {
+                        echo "<div class='alert alert-danger text-center'><strong>Adventencia:"
+                        . " </strong>La ficha ya esta registrada</div>";
+                    }
+                    if ($err == 2) {
+                        echo "<div class='alert alert-success text-center'><strong>Adventencia: "
+                        . "</strong>la ficha no esta registrada, continue</div>";
+                    }
+                    ?>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="ficha" class="control-label col-xs-3">ficha:</label>
+                            <div class="col-xs-9">
+                                <input id="ficha" name="ficha" value="<?php echo $vl->ficha; ?>" 
+                                       type="text" class="form-control"
+                                       placeholder="Numero de ficha" onkeyup="validacion('ficha');" required>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="uf" class="control-label col-xs-3">Unidad funcional:</label>
+                            <div class="col-xs-9">
+                                <input class="form-control" id="disabledInput" name="uf" value="5" type="text" placeholder="7" disabled>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Cedulacatastral" class="control-label col-xs-3">Cedula catastral:</label>
+                            <div class="col-xs-9">
+                                <input id="Cedulacatastral" name="Cedulacatastral"  value="<?php echo $vl->catastral; ?>" type="text" class="form-control" placeholder="Cedula catastral" onkeyup="validacion('Cedulacatastral');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Matricula" class="control-label col-xs-3">Matricula inmobiliaria:</label>
+                            <div class="col-xs-9">
+                                <input id="Matricula" name="Matricula" value="<?php echo $vl->matricula; ?>" type="text" class="form-control" placeholder="Matricula" onkeyup="validacion('Matricula');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div style="margin-left: 200px;">
+                            <button type="submit" name="one" class="btn btn-primary">Guardar</button></div>
+                    </div></form>
+            </div>
+            <div id="menu1" class="tab-pane fade" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <?php
+                    if ($err == 4) {
+                        echo "<div class='alert alert-danger text-center'><strong>Adventencia:"
+                        . " </strong>Revice bien los datos</div>";
+                    }
+                    if ($err == 3) {
+                        echo "<div class='alert alert-success text-center'><strong>Adventencia: "
+                        . "</strong>la información esta registrada</div>";
+                    }
+                    ?>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="nombre" class="control-label col-xs-3">Nombre:</label>
+                            <div class="col-xs-9">
+                                <input id="nombre" name="nombre" value="<?php echo $vl->nombre; ?>" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Cedula" class="control-label col-xs-3">Cedula:</label>
+                            <div class="col-xs-9">
+                                <input id="Cedula" name="Cedula" value="<?php echo $vl->cedula; ?>" type="text" class="form-control" placeholder="Cedula" onkeyup="validacion('Cedula');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>                    <div class="form-group">
+                            <label for="Telefono" class="control-label col-xs-3" >Telefono:</label>
+                            <div class="col-xs-9">
+                                <input id="Telefono" name="Telefono" value="<?php echo $vl->telefono; ?>" type="tel" class="form-control" placeholder="Telefono" onkeyup="validacion('Telefono');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Email" class="control-label col-xs-3" >Email:</label>
+                            <div class="col-xs-9">
+                                <input id="Email" name="Email" value="<?php echo $vl->email; ?>" type="tel" class="form-control" placeholder="Email" onkeyup="validacion('Email');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="escritura" class="control-label col-xs-3">Escritura:</label>
+                            <div class="col-xs-9">
+                                <input id="escritura" name="escritura" value="<?php echo $vl->escritura; ?>" type="text" class="form-control" placeholder="escritura" onkeyup="validacion('escritura');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="notaria" class="control-label col-xs-3">Notaria:</label>
+                            <div class="col-xs-9">
+                                <input id="notaria" name="notaria" value="<?php echo $vl->notaria; ?>" type="text" class="form-control" placeholder="notaria" onkeyup="validacion('notaria');">
+                                <span class="help-block"></span>
+                            </div> </div>
+                        <div style="margin-left: 200px;">
+                            <button type="submit" name="two" class="btn btn-primary">Guardar</button></div></div>
+                </form></div>
+            <div id="menu2" class="tab-pane fade" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <?php
+                    if ($err == 5) {
+                        echo "<div class='alert alert-danger text-center'><strong>Adventencia:"
+                        . " </strong>Revice bien los datos</div>";
+                    }
+                    if ($err == 6) {
+                        echo "<div class='alert alert-success text-center'><strong>Adventencia: "
+                        . "</strong>la ficha esta registrada</div>";
+                    }
+                    ?>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Sector" class="control-label col-xs-3">Sector:</label>
+                            <div class="col-xs-9">
+                                <input id="Sector" name="Sector" type="text" value="Giron-Piedecuesta" class="form-control" placeholder="Sector" onkeyup="validacion('Sector');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="disabledSelect" class="control-label col-xs-3">Departamento:</label>
+                            <div class="col-xs-9">
+                                <input class="form-control" id="disabledInput" value="Santander" type="text" placeholder="Santander" disabled>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Municipio" class="control-label col-xs-3">Municipio:</label>
+                            <div class="col-xs-9">
+                                <select id="Municipio" name="Municipio" class="form-control" onkeyup="validacion('Municipio');">
+                                    <option value="0">Seleccione uno</option>
+                                    <option value="1" <?php if ($vl->municipio == '1') {
+                    echo 'selected';
+                } ?>>Giron</option>
+                                    <option value="2" <?php if ($vl->municipio == '2') {
+                    echo 'selected';
+                } ?>>Piedecuesta</option>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>  
+                        </div>
+                        <div class="form-group">
+                            <label for="Vereda" class="control-label col-xs-3">Vereda:</label>
+                            <div class="col-xs-9">
+                                <select id="Vereda" name="Vereda" class="form-control" onkeyup="validacion('Vereda');">
+                                    <option value="0">Seleccione uno</option>
+                                    <option value="1" <?php if ($vl->barrio == '1') {
+                    echo 'selected';
+                } ?>>Barro Blanco</option>
+                                    <option value="2"<?php if ($vl->barrio == '2') {
+                    echo 'selected';
+                } ?>>Giron</option>
+                                    <option value="3" <?php if ($vl->barrio == '3') {
+                    echo 'selected';
+                } ?>>Guatiguara</option>
+                                    <option value="4" <?php if ($vl->barrio == '4') {
+                    echo 'selected';
+                } ?>>Malpaso</option>
+                                    <option value="5" <?php if ($vl->barrio == '5') {
+                    echo 'selected';
+                } ?>>Palo gordo</option>
+                                    <option value="6" <?php if ($vl->barrio == '6') {
+                    echo 'selected';
+                } ?>>Piedecuesta</option>
+                                    <option value="7" <?php if ($vl->barrio == '7') {
+                    echo 'selected';
+                } ?>>Rionegro</option>
+                                    <option value="8" <?php if ($vl->barrio == '8') {
+                    echo 'selected';
+                } ?>>Santa rita o pajonal</option>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Direccion" class="control-label col-xs-3">Dirección:</label>
+                            <div class="col-xs-9">
+                                <textarea id="Direccion" name="Direccion"  rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"><?php echo $vl->direccion; ?></textarea>
+                                <span class="help-block"></span>
+                            </div>  
+                        </div>   
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="requerido" class="control-label col-xs-3">Predio requerido para:</label>
+                            <div class="col-xs-9">
+                                <input class="form-control" id="disabledInput" name="requerido" value="Mejoramiento" type="text" placeholder="Santander" disabled>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="suelo" class="control-label col-xs-3">Uso del suelo:</label>
+                            <div class="col-xs-9">
+                                <select id="suelo" name="suelo" class="form-control" onkeyup="validacion('suelo');">
+                                    <option value="0">Seleccione uno</option>
+                                    <option value="1" <?php if ($vl->usosuelo == '1') {
+                    echo 'selected';
+                } ?>>Urbano</option>
+                                    <option value="2" <?php if ($vl->usosuelo == '2') {
+                    echo 'selected';
+                } ?>>Rural</option>
+                                    <option value="3" <?php if ($vl->usosuelo == '3') {
+                    echo 'selected';
+                } ?>>Expansion urbana</option>
+                                    <option value="4" <?php if ($vl->usosuelo == '4') {
+                    echo 'selected';
+                } ?>>Suburbano</option>
+                                    <option value="5" <?php if ($vl->usosuelo == '5') {
+                    echo 'selected';
+                } ?>>Protección</option>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="economica" class="control-label col-xs-3">Actividad economica:</label>
+                            <div class="col-xs-9">
+                                <select id="economica" name="economica" class="form-control" onkeyup="validacion('economica');">
+                                    <option value="0">Seleccione uno</option>
+                                    <option value="1" <?php if ($vl->idactividadeconomica == '1') {
+                    echo 'selected';
+                } ?>>Agricola</option>
+                                    <option value="2"<?php if ($vl->idactividadeconomica == '2') {
+                    echo 'selected';
+                } ?>>Agropecuario</option>
+                                    <option value="3" <?php if ($vl->idactividadeconomica == '3') {
+                    echo 'selected';
+                } ?>>Habitacional</option>
+                                    <option value="4"<?php if ($vl->idactividadeconomica == '4') {
+                    echo 'selected';
+                } ?>>Uso Publico</option>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Topografia" class="control-label col-xs-3">Topografia:</label>
+                            <div class="col-xs-9">
+                                <select id="Topografia"  name="Topografia" class="form-control" onkeyup="validacion('Topografia');">
+                                    <option value="0">NO CONSTA</option>
+                                    <option value="1" selected>0 - 7 % Plana</option>
+                                    <option value="2">8-25% Ondulada</option>
+                                    <option value="3">26-50% Fuertemente quebrado</option>
+                                    <option value="4">> 50 % Escarpado</option>
+                                    <option value="5">Mixta</option>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div style="margin-left: 200px;">
+                            <button type="submit" name="primero" class="btn btn-primary">Guardar</button></div></div>
+                </form>
+            </div>
+            <div id="menu3" class="tab-pane fade" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="terreno" class="control-label col-xs-3">Area del terreno M2:</label>
+                            <div class="col-xs-9">  
+                                <input id="terreno" name="terreno" type="text" class="form-control" value="0" onkeyup="sumar();
+                                        validacion('terreno');" onkeyup="validacion('terreno');">
+                                <span class="help-block"></span>
+                            </div></div>
+                        <div class="form-group">
+                            <label for="requerida" class="control-label col-xs-3">Area requerida M2:</label>
+                            <div class="col-xs-9">
+                                <input id="requerida" name="requerida" type="text" class="form-control" value="0" onkeyup="sumar();
+                                        validacion('requerida');" onkeyup="validacion('requerida');">
+                                <span class="help-block"></span>
+                            </div></div>
+                        <div class="form-group">
+                            <label for="remanente" class="control-label col-xs-3">Area remanente M2:</label>
+                            <div class="col-xs-9">
+
+                                <input id="remanente" name="remanente" type="text" class="form-control" value="0" placeholder="Area remanente" onkeyup="validacion('remanente');">
+
+                                <span class="help-block"></span>
+                            </div></div> 
+                        <div class="form-group">
+                            <label for="sobrante" class="control-label col-xs-3">Area sobrante M2:</label>
+                            <div class="col-xs-9">
+
+
+                                <input id="sobrante" name="sobrante" type="text" class="form-control" value="0" onkeyup="validacion('sobrante');">
+
+                                <span class="help-block"></span>
+                            </div></div>
+                        <div class="form-group">
+                            <label for="total" class="control-label col-xs-3">Area total requerida M2:</label>
+                            <div class="col-xs-9">
+
+                                <input id="total" name="total" type="text" class="form-control" placeholder="0" onkeyup="validacion('total');">
+
+                                <span class="help-block"></span>
+                            </div></div> 
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Margen" class="control-label col-xs-3">Margen:</label>
+                            <div class="col-xs-9">
+                                <select id="Margen" name="Margen" class="form-control" onkeyup="validacion('Margen');">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inicial" class="control-label col-xs-3">Abscisa inicial:</label>
+                            <div class="col-xs-9">
+                                <input id="inicial" name="inicial" type="text" class="form-control" placeholder="Abscisa inicial" onkeyup="sumar();
+                                        validacion('inicial');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="final" class="control-label col-xs-3">Abscisa final:</label>
+                            <div class="col-xs-9">
+                                <input id="final" name="final" type="text" class="form-control" placeholder="Abscisa final" onkeyup="sumar();
+                                        validacion('final');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Longitud" class="control-label col-xs-3">Longitud efectiva:</label>
+                            <div class="col-xs-9">
+                                <input id="Longitud" type="text" class="form-control" placeholder="Longitud efectiva" name="Longitud" onkeyup="validacion('Longitud');">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div style="margin-left: 200px;">
+                            <button type="submit" name="segundo" class="btn btn-primary">Guardar</button></div>
+                    </div>
+                </form>
+            </div>
+            <div id="menu4" class="tab-pane fade" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Linderos</th>
+                                <th>Longitud</th>
+                                <th>Colindantes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Norte</td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                            </tr>
+                            <tr>
+                                <td>Sur</td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                            </tr>
+                            <tr>
+                                <td>Oriente</td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                            </tr>
+                            <tr>
+                                <td>Occidente</td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-left: 200px;">
+                        <button type="submit" name="tercero" class="btn btn-primary">Guardar</button></div>
+                </form>
+            </div>
+            <div id="menu5" class="tab-pane fade" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Descripción</th>
+                                <th>Cant</th>
+                                <th>Densidad</th>
+                                <th>Unidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      </tr>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>        </tr>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>       </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-left: 200px;">
+                        <button type="submit" name="cuarto" class="btn btn-primary">Guardar</button></div>
+                </form>
+            </div>
+            <div id="menu6" class="tab-pane fade" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Descripción</th>
+                                <th>Cantidad</th>
+                                <th>Unidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>      <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-left: 200px;">
+                        <button type="submit" name="quinto" class="btn btn-primary">Guardar</button></div>
+                </form>
+            </div>
+            <div id="menu7" class="tab-pane fade" style="margin-top: 50px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Descripción</th>
+                                <th>Cantidad</th>
+                                <th>Unidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>
+                            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>            <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>      <tr>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>
+                                <td><input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" onkeyup="validacion('nombre');"></td>      
+                            </tr>
+                        </tbody>
+                    </table> 
+                    <div style="margin-left: 200px;">
+                        <button type="submit" name="sexto" class="btn btn-primary">Guardar</button></div>
+                </form>
+            </div>
+            <div id="menu8" class="tab-pane fade" style="margin-top: 30px;">
+                <form data-toggle="validator"  role="form" class="form-horizontal" action="" method="post">
+                    <div class="form-group">
+                        <label for="genderRadios" class="control-label col-xs-9">Tiene el inmueble licencia urbanística,Urbanización,
+                            parcelación, subdivisión, construcción, Intervención, Espacio público ?</label>
+                        <div class="col-xs-3">
+                            <label class="radio-inline">
+                                <input id="male" type="radio" name="genderRadios" value="M" onclick="validacion('genderRadios')"> SI
+                            </label>
+                            <label class="radio-inline">
+                                <input id="female" type="radio" name="genderRadios" value="F" onclick="validacion('genderRadios')"> NO
+                            </label>                          
+                        </div>           
+                    </div>
+                    <div class="form-group">
+                        <label for="genderRadios" class="control-label col-xs-9">Tiene el inmueble reglamento de Propiedad
+                            Horozontal LEY 675 DE 2001 ?</label>
+                        <div class="col-xs-3">
+                            <label class="radio-inline">
+                                <input id="male" type="radio" name="genderRadios" value="M" onclick="validacion('genderRadios')"> SI
+                            </label>
+                            <label class="radio-inline">
+                                <input id="female" type="radio" name="genderRadios" value="F" onclick="validacion('genderRadios')"> NO
+                            </label>                          
+                        </div>           
+                    </div>
+                    <div class="form-group">
+                        <label for="genderRadios" class="control-label col-xs-9">Tiene el inmueble aprobado plan parcial en el
+                            momento del levantamiento de la ficha predial ?</label>
+                        <div class="col-xs-3">
+                            <label class="radio-inline">
+                                <input id="male" type="radio" name="genderRadios" value="M" onclick="validacion('genderRadios')"> SI
+                            </label>
+                            <label class="radio-inline">
+                                <input id="female" type="radio" name="genderRadios" value="F" onclick="validacion('genderRadios')"> NO
+                            </label>                          
+                        </div>           
+                    </div>
+                    <div class="form-group">
+                        <label for="genderRadios" class="control-label col-xs-9">Aplica Informe de analisis de Área Remanente:</label>
+                        <div class="col-xs-3">
+                            <label class="radio-inline">
+                                <input id="male" type="radio" name="genderRadios" value="M" onclick="validacion('genderRadios')"> SI
+                            </label>
+                            <label class="radio-inline">
+                                <input id="female" type="radio" name="genderRadios" value="F" onclick="validacion('genderRadios')"> NO
+                            </label>                          
+                        </div>           
+                    </div>
+                    <div class="form-group" style="margin-right: 120px;">
+                        <label for="Direccion" class="control-label col-xs-3">Observaciones:</label>
+                        <div class="col-xs-9">
+                            <textarea id="Direccion" name="Direccion" rows="3" class="form-control" placeholder="Dirección" onkeyup="validacion('Direccion');"></textarea>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div style="margin-left: 200px;">
+                        <button type="submit" name="septimo" class="btn btn-primary">Guardar</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+<?php echo Tag::js('validacion/js/validacion') ?> 
+

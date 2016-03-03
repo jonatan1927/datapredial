@@ -1,0 +1,62 @@
+<?php
+$err = isset($_GET['error']) ? $_GET['error'] : null;
+ Load::model('persona');
+ $p = new persona();
+ foreach ($p->find("cedula='$titulo'") as $pp){
+  ?>
+<div style="text-align: center;background-color: buttonhighlight"><h3>Perfil del usuario</h3></div>
+            <?php
+            if ($err == 2) {
+                echo "<div class='alert alert-danger text-center'><strong>Adventencia:"
+                . " </strong>No se pudo realizar la actualización</div>";
+            }
+            if ($err == 1) {
+                echo "<div class='alert alert-success text-center'><strong>Adventencia: "
+                . "</strong>la actualización fue un exito</div>";
+            }
+            ?>
+<br>
+<br>
+
+        <div class="col-lg-10">
+            <form  role="form" class="form-horizontal" action="" method="post">
+        <div class="form-group">
+                <label for="nombre" class="control-label col-xs-5">Nombre:</label>
+                <div class="col-xs-5">
+                    <input id="nombre" name="nombre" type="text" class="form-control"
+                           placeholder="Nombre" value="<?php echo $pp->nombre?>" onkeyup="validacion('nombre');">
+                    <span class="help-block"></span>
+                </div>
+        </div>
+            <div class="form-group">
+                <label for="Telefono" class="control-label col-xs-5">Telefono:</label>
+                <div class="col-xs-5">
+                    <input id="Telefono" name="Telefono" type="text" value="<?php echo $pp->telefono?>"
+              class="form-control" value="<?php?>" placeholder="Telefono" onkeyup="validacion('Telefono');">
+                    <span class="help-block"></span>
+                </div></div>
+                            <div class="form-group">
+                <label for="Email" class="control-label col-xs-5">E-mail:</label>
+                <div class="col-xs-5">
+                    <input id="Email" name="Email" type="text" value="<?php echo $pp->email?>"
+                           class="form-control" placeholder="Email" onkeyup="validacion('Email');">
+                    <span class="help-block"></span>
+                </div>
+                
+                            </div>
+                                <div class="form-group" style="visibility: hidden;">
+                <label for="Cedula" class="control-label col-xs-5">Cedula:</label>
+                <div class="col-xs-5">
+                    <input id="Cedula" name="Cedula" type="text" value="<?php echo $pp->cedula?>" 
+                 class="form-control" placeholder="Cedula" onkeyup="validacion('Cedula');">
+                    <span class="help-block"></span>
+                </div>
+            </div>
+                      <div style="margin-left: 630px;">
+                <button type="submit" class="btn btn-primary">Actualizar</button></div>
+         </form>
+            </div>
+
+<?php } ?>
+
+    <?php echo Tag::js('validacion/js/validacion') ?> 
